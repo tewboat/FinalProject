@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_habits"
+        android:icon="@drawable/ic_cached"
+        android:title="@string/title_habits" />
+
+    <item
+        android:id="@+id/navigation_todo"
+        android:icon="@drawable/ic_check_circle"
+        android:title="@string/title_todo" />
+
+    <item
+        android:id="@+id/navigation_goals"
+        android:icon="@drawable/ic_timeline"
+        android:title="@string/title_goals" />
+
+</menu>

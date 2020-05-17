@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/todoFragment">
+    <fragment
+        android:id="@+id/todoFragment"
+        android:name="com.example.finalproject.view.fragments.TodoFragments.TodoFragment"
+        android:label="todo_fragment"
+        tools:layout="@layout/todo_fragment"
+        >
+        <action
+            android:id="@+id/action_todoFragment_to_habitsFragment"
+            app:destination="@id/habitsFragment" />
+        <action
+            android:id="@+id/action_todoFragment_to_goalsFragment2"
+            app:destination="@id/goalsFragment" />
+        <action
+            android:id="@+id/action_todoFragment_to_todoCreationFragment"
+            app:destination="@id/todoCreationFragment" />
+        <action
+            android:id="@+id/action_todoFragment_to_todoInfoFragment"
+            app:destination="@id/todoInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goalsFragment"
+        android:name="com.example.finalproject.view.fragments.GoalsFragments.GoalsFragment"
+        android:label="goals_fragment"
+        tools:layout="@layout/goals_fragment" >
+        <action
+            android:id="@+id/action_goalsFragment2_to_habitsFragment"
+            app:destination="@id/habitsFragment" />
+        <action
+            android:id="@+id/action_goalsFragment2_to_todoFragment"
+            app:destination="@id/todoFragment" />
+        <action
+            android:id="@+id/action_goalsFragment_to_goalCreationFragment"
+            app:destination="@id/goalCreationFragment" />
+        <action
+            android:id="@+id/action_goalsFragment_to_stepsFragment"
+            app:destination="@id/stepsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/habitsFragment"
+        android:name="com.example.finalproject.view.fragments.HabitsFragments.HabitsFragment"
+        android:label="habits_fragment"
+        tools:layout="@layout/habits_fragment" >
+        <action
+            android:id="@+id/action_habitsFragment_to_goalsFragment2"
+            app:destination="@id/goalsFragment" />
+        <action
+            android:id="@+id/action_habitsFragment_to_todoFragment"
+            app:destination="@id/todoFragment" />
+        <action
+            android:id="@+id/action_habitsFragment_to_habitCreationFragment"
+            app:destination="@id/habitCreationFragment" />
+        <action
+            android:id="@+id/action_habitsFragment_to_habitInfoFragment"
+            app:destination="@id/habitInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoCreationFragment"
+        android:name="com.example.finalproject.view.fragments.TodoFragments.TodoCreationFragment"
+        android:label="TodoCreationFragment" />
+    <fragment
+        android:id="@+id/todoInfoFragment"
+        android:name="com.example.finalproject.view.fragments.TodoFragments.TodoInfoFragment"
+        android:label="TodoInfoFragment" />
+    <fragment
+        android:id="@+id/habitCreationFragment"
+        android:name="com.example.finalproject.view.fragments.HabitsFragments.HabitCreationFragment"
+        android:label="HabitCreationFragment" />
+    <fragment
+        android:id="@+id/habitInfoFragment"
+        android:name="com.example.finalproject.view.fragments.HabitsFragments.HabitInfoFragment"
+        android:label="HabitInfoFragment" />
+    <fragment
+        android:id="@+id/goalCreationFragment"
+        android:name="com.example.finalproject.view.fragments.GoalsFragments.GoalCreationFragment"
+        android:label="GoalCreationFragment" />
+    <fragment
+        android:id="@+id/stepsFragment"
+        android:name="com.example.finalproject.view.fragments.GoalsFragments.StepsFragment"
+        android:label="StepsFragment" >
+        <action
+            android:id="@+id/action_stepsFragment_to_stepCreationFragment"
+            app:destination="@id/stepCreationFragment" />
+        <action
+            android:id="@+id/action_stepsFragment_to_stepInfoFragment"
+            app:destination="@id/stepInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stepCreationFragment"
+        android:name="com.example.finalproject.view.fragments.GoalsFragments.StepCreationFragment"
+        android:label="StepCreationFragment" />
+    <fragment
+        android:id="@+id/stepInfoFragment"
+        android:name="com.example.finalproject.view.fragments.GoalsFragments.StepInfoFragment"
+        android:label="StepInfoFragment" />
+</navigation>

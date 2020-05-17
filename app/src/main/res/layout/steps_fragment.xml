@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/goal_info_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/colorMaterialGreen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/step_fragment_back_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/goal_info_fragment_delete_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_delete_black_24dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/goal_text_steps_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/goal_info_color_picker_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/goal_info_color_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/color_choice"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+
+        <View
+            android:id="@+id/goal_info_chosen_color"
+            android:background="@color/colorMaterialGreen"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/time_to_add_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/steps_list_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+        <ImageButton
+            android:id="@+id/add_step"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:text="add goal"
+            android:background="@drawable/ic_add_circle"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMaterialGreen"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/step_info_fragment_back_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/step_info_fragment_delete_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_delete_black_24dp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/step_info_fragment_step_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/step_info_fragment_description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/description"
+            android:inputType="text"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/isDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/completed"
+                android:inputType="text"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/step_info_fragment_complete_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_check_box_outline" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

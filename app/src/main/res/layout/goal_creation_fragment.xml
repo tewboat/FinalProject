@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/goal_creation_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/colorMaterialGreen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/goal_creation_fragment_back_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_arrow_back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/goal_creation_fragment_create_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_create_black_24dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/goal_creation_fragment_goal_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/title"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <LinearLayout
+            android:id="@+id/color_picker_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/goal_creation_color_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/color_choice"
+                android:inputType="textPersonName"
+                android:layout_weight="1"/>
+
+            <View
+                android:id="@+id/goal_creation_chosen_color"
+                android:background="@color/colorMaterialGreen"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

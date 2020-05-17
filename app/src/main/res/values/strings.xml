@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+
+    <string name="title_habits">Habits</string>
+    <string name="title_todo">Tasks</string>
+    <string name="title_goals">Goals</string>
+    <string name="offer_1">Oops, You have not got anything there! </string>
+    <string name="offer_habit">It is time to add your first habit!</string>
+    <string name="offer_task">It is time to add your first task!</string>
+    <string name="offer_goal">It is time to add your first goal!</string>
+    <string name="offer_2">You have not added anything yet!</string>
+    <string name="delete_habit">Delete habit</string>
+    <string name="delete_task">Delete task</string>
+    <string name="delete_goal">Delete goal</string>
+    <string name="delete_step">Delete step</string>
+    <string name="color_choice">Choose a color</string>
+    <string name="title">Title</string>
+    <string name="remind">Remind at</string>
+    <string name="description">Description</string>
+    <string name="completed">Completed</string>
+    <string name="back">Back</string>
+    <string name="create">Create</string>
+    <string name="cancel_alarm">Cancel alarm</string>
+
+</resources>
