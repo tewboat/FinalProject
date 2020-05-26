@@ -20,7 +20,7 @@
                 android:id="@+id/todo_creation_fragment_cancel_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_arrow_back"/>
+                android:background="@drawable/back_button_selector"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                 android:id="@+id/todo_creation_fragment_enter_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_create_black_24dp"/>
+                android:background="@drawable/create_button_selector"/>
 
         </LinearLayout>
 

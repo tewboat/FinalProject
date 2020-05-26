@@ -47,7 +47,7 @@ public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view;
-        view = inflater.inflate(R.layout.todo_edit_mode, container, false);
+        view = inflater.inflate(R.layout.todo_info, container, false);
         initView(view);
         setValues();
         return view;

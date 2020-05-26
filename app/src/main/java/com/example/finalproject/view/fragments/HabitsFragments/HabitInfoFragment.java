@@ -54,7 +54,7 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view;
-        view = inflater.inflate(R.layout.habit_edit_mode, container, false);
+        view = inflater.inflate(R.layout.habit_info, container, false);
         deleteHabit = view.findViewById(R.id.habit_info_fragment_delete_button);
         pickedTime = view.findViewById(R.id.habit_picked_time);
         habitNameEditMode = view.findViewById(R.id.habit_info_fragment_habit_name_text_view_edit_mode);
