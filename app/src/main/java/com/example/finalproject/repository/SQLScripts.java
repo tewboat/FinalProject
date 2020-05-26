@@ -12,8 +12,9 @@ public class SQLScripts {
                 "id text not null primary key, " +
                 "todoText text not null, " +
                 "reminderTime text null, " +
-                "isComplete integer not null , " +
-                "requestCode integer not null);";
+                "isComplete integer not null, " +
+                "requestCode integer not null, " +
+                "priority integer not null);";
     }
 
     public static String initHabitsDatabaseScript() {
@@ -61,6 +62,12 @@ public class SQLScripts {
                 "where id = " + id + ";";
     }
 
+    public static String deleteAllGoalStepsScript(Goal goal){
+        String id = "\"" + goal.getID() + "\"";
+        return "delete from stepsDatabase " +
+                "where parentID = " + id + ";";
+    }
+
     public static String removeObjectFromStepsDatabaseScript(Step step) {
         String id = "\"" + step.getId() + "\"";
         return "delete from stepsDatabase " +
@@ -90,12 +97,13 @@ public class SQLScripts {
         if (todo.getReminderTime() != null) {
             reminderTime = "\"" + todo.getReminderTime() + "\"";
         }
-        return "INSERT INTO todoDatabase(id, todoText, reminderTime, isComplete, requestCode)" +
+        return "INSERT INTO todoDatabase(id, todoText, reminderTime, isComplete, requestCode, priority)" +
                 "values(" + id + ", " +
                 text + ", " +
                 reminderTime + ", " +
                 todo.getIsComplete() + ", " +
-                todo.getRequestCode() + ");";
+                todo.getRequestCode() + ", " +
+                todo.getPriority() + ");";
     }
 
     public static String insertObjIntoGoalsDatabaseScript(Goal goal) {
@@ -143,7 +151,8 @@ public class SQLScripts {
                 "SET todoText = " + text + ", " +
                 "reminderTime = " + reminderTime + ", " +
                 "isComplete = " + isComplete + ", " +
-                "requestCode = " + todo.getRequestCode() + " " +
+                "requestCode = " + todo.getRequestCode() + ", " +
+                "priority = " + todo.getPriority() + " " +
                 "WHERE id = " + id + ";";
     }
 

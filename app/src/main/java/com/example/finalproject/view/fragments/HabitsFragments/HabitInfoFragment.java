@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,9 +39,8 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
     private TextView pickTime, colorPicker;
     private String habitID;
     private Interactor interactor;
-    private ImageButton deleteHabit, cancelEditMode;
+    private ImageButton deleteHabit, mSaveButton;
     private TextView pickedTime;
-    private final int fragmentID = 1;
     private Habit habit;
     private View pickedColor;
     private LinearLayout colorPickerLayout, headerLayout;
@@ -58,7 +58,7 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
         deleteHabit = view.findViewById(R.id.habit_info_fragment_delete_button);
         pickedTime = view.findViewById(R.id.habit_picked_time);
         habitNameEditMode = view.findViewById(R.id.habit_info_fragment_habit_name_text_view_edit_mode);
-        cancelEditMode = view.findViewById(R.id.habit_info_fragment_cancel_button_edit_mode);
+        mSaveButton = view.findViewById(R.id.habit_info_fragment_save_button);
         pickTime = view.findViewById(R.id.pick_time);
         pickedColor = view.findViewById(R.id.habit_info_chosen_color);
         colorPickerLayout = view.findViewById(R.id.habit_info_color_picker_layout);
@@ -88,9 +88,16 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
 
     private void setOnClickListeners() {
 
-        cancelEditMode.setOnClickListener(new View.OnClickListener() {
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateHabit();
+                interactor.updateHabitsDb(habit);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                if(imm != null) {
+                    imm.hideSoftInputFromWindow(mSaveButton.getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+                }
                 Navigation.findNavController(getView()).popBackStack();
             }
         });
@@ -98,7 +105,7 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
         deleteHabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog(habit, fragmentID, getView()).show(getActivity().getSupportFragmentManager(), "ALERT_DIALOG");
+                new AlertDialog(habit, AlertDialog.HABIT_FRAGMENT_ID, getView()).show(getActivity().getSupportFragmentManager(), "ALERT_DIALOG");
             }
         });
 
@@ -167,12 +174,12 @@ public class HabitInfoFragment extends Fragment implements TimePickerDialog.OnTi
         startAlarm(calendar, habit.getText());
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        updateHabit();
-        interactor.updateHabitsDb(habit);
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        updateHabit();
+//        interactor.updateHabitsDb(habit);
+//    }
 
     @Override
     public void onSetColor(int colorID) {

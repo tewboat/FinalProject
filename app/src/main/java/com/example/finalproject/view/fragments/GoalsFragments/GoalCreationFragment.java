@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -61,6 +62,11 @@ public class GoalCreationFragment extends Fragment implements OnSetColor {
                 if(goalName.getText() != null && !goalName.getText().toString().equals("")){
                     Goal goal = new Goal(null, goalName.getText().toString(), 0, 0, colorID);
                     interactor.insertGoalIntoDb(goal);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    if(imm != null) {
+                        imm.hideSoftInputFromWindow(create.getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                     Navigation.findNavController(getView()).popBackStack();
                 }
             }

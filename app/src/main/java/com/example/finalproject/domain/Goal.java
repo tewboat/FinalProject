@@ -35,10 +35,6 @@ public class Goal {
         return progress;
     }
 
-    public String getStringProgress(){
-        return progress + "%";
-    }
-
     public String getID() {
         return id;
     }

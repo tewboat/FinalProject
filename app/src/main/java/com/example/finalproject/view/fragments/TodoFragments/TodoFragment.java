@@ -21,6 +21,9 @@ import com.example.finalproject.interactor.Interactor;
 import com.example.finalproject.view.adapter.ToDoListAdapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 public class TodoFragment extends Fragment implements ToDoListAdapter.OnTodoClick {
@@ -45,22 +48,20 @@ public class TodoFragment extends Fragment implements ToDoListAdapter.OnTodoClic
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setOnClickListener();
-    }
+
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         interactor = new Interactor(getActivity());
+        todoArrayList = interactor.getTodoList();
+        Collections.sort(todoArrayList, new TodoListComparator());
+        setOnClickListener();
         init();
     }
 
     private void init(){
         Log.d(TAG, "init: getting todoArrayList");
-        todoArrayList = interactor.getTodoList();
         if(todoArrayList.size() == 0){
             Random random = new Random();
             int mRandomInt = random.nextInt(3);
@@ -98,6 +99,20 @@ public class TodoFragment extends Fragment implements ToDoListAdapter.OnTodoClic
         bundle.putString("TODO_ID", todo.getId());
         Navigation.findNavController(getView()).navigate(R.id.todoInfoFragment, bundle);
     }
+}
 
+class TodoListComparator implements Comparator<Todo> {
 
+    @Override
+    public int compare(Todo o1, Todo o2) {
+        if(o1.getPriority() > o2.getPriority()){
+            return -1;
+        }
+        if(o1.getPriority() < o2.getPriority()){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }

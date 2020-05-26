@@ -42,4 +42,16 @@ public class Step {
                 break;
         }
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setIsDone(int isDone) {
+        this.isDone = isDone;
+    }
 }

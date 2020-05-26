@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:id="@+id/habit_info_header_layout"
@@ -17,10 +18,10 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/habit_info_fragment_cancel_button_edit_mode"
+                android:id="@+id/habit_info_fragment_delete_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_arrow_back"/>
+                android:background="@drawable/ic_delete_black_24dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -28,10 +29,10 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/habit_info_fragment_delete_button"
+                android:id="@+id/habit_info_fragment_save_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_delete_black_24dp"/>
+                android:background="@drawable/ic_done_black"/>
 
         </LinearLayout>
 
@@ -44,7 +45,7 @@
             android:hint="@string/title"
             android:textSize="16sp"
             android:background="@android:color/transparent"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="24dp"/>
     </LinearLayout>
 
     <LinearLayout

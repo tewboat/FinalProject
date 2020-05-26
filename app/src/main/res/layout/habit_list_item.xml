@@ -26,6 +26,6 @@
         android:inputType="text"
         android:text="text"
         android:textColor="#000"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

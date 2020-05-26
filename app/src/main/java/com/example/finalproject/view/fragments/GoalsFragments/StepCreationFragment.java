@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.annotation.NonNull;
@@ -59,6 +60,11 @@ public class StepCreationFragment extends Fragment {
                 if(stepName.getText() != null && !stepName.getText().toString().equals("")){
                     Step step = new Step(null, stepName.getText().toString(), stepDescription.getText().toString(), 0);
                     interactor.insertStepIntoDb(goal, step);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    if(imm != null) {
+                        imm.hideSoftInputFromWindow(create.getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                     Navigation.findNavController(getView()).popBackStack();
                 }
             }

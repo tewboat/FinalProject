@@ -11,4 +11,5 @@
     <color name="colorGrey">#8B8B8B</color>
     <color name="colorMaterialYellow">#F9A825</color>
     <color name="colorMaterialBlue">#0277BD</color>
+    <color name="menuColor">#DDDDDD</color>
 </resources>

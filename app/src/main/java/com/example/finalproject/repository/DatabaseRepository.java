@@ -43,13 +43,15 @@ public class DatabaseRepository {
             int reminderTomeColIndex = cursor.getColumnIndex("reminderTime");
             int isDoneColIndex = cursor.getColumnIndex("isComplete");
             int requestCodeIndex = cursor.getColumnIndex("requestCode");
+            int priorityColIndex = cursor.getColumnIndex("priority");
             ArrayList<Todo> todoArrayList = new ArrayList<>();
             do {
                 Todo todo = new Todo(cursor.getString(idColIndex),
                         cursor.getString(textColIndex),
                         cursor.getInt(isDoneColIndex),
                         cursor.getString(reminderTomeColIndex),
-                        cursor.getInt(requestCodeIndex));
+                        cursor.getInt(requestCodeIndex),
+                        cursor.getInt(priorityColIndex));
                 todoArrayList.add(todo);
             } while (cursor.moveToNext());
             cursor.close();
@@ -95,6 +97,7 @@ public class DatabaseRepository {
     public void removeGoal(Goal goal) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         db.execSQL(SQLScripts.removeObjectFromGoalsDatabaseScript(goal));
+        db.execSQL(SQLScripts.deleteAllGoalStepsScript(goal));
         db.close();
     }
 
@@ -221,11 +224,13 @@ public class DatabaseRepository {
         int reminderTomeColIndex = cursor.getColumnIndex("reminderTime");
         int isDoneColIndex = cursor.getColumnIndex("isComplete");
         int requestCodeIndex = cursor.getColumnIndex("requestCode");
+        int priorityColIndex = cursor.getColumnIndex("priority");
         Todo todo = new Todo(cursor.getString(idColIndex),
                 cursor.getString(textColIndex),
                 cursor.getInt(isDoneColIndex),
                 cursor.getString(reminderTomeColIndex),
-                cursor.getInt(requestCodeIndex));
+                cursor.getInt(requestCodeIndex),
+                cursor.getInt(priorityColIndex));
         cursor.close();
         db.close();
         return todo;

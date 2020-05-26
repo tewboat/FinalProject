@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,10 +18,10 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/step_info_fragment_back_button"
+                android:id="@+id/step_info_fragment_delete_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_arrow_back" />
+                android:background="@drawable/ic_delete_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -28,10 +29,10 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/step_info_fragment_delete_button"
+                android:id="@+id/step_info_fragment_save_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_delete_black_24dp" />
+                android:background="@drawable/save_button_selector"/>
 
         </LinearLayout>
 
@@ -39,7 +40,7 @@
             android:id="@+id/step_info_fragment_step_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/title"
@@ -79,11 +80,10 @@
                 android:inputType="text"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/step_info_fragment_complete_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/ic_check_box_outline" />
+            <CheckBox
+                android:id="@+id/step_info_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </LinearLayout>

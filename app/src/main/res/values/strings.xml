@@ -21,5 +21,6 @@
     <string name="back">Back</string>
     <string name="create">Create</string>
     <string name="cancel_alarm">Cancel alarm</string>
+    <string name="high_priority">High priority</string>
 
 </resources>

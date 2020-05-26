@@ -10,13 +10,17 @@ public class Todo {
     private int requestCode;
     private String reminderTime;
     private String id;
+    private int mPriority;
 
 
-    public Todo(String id, String text, int isComplete, String reminderTime, int requestCode){
+
+
+    public Todo(String id, String text, int isComplete, String reminderTime, int requestCode, int priority){
         this.text = text;
         this.isComplete = isComplete;
         this.reminderTime = reminderTime;
         this.requestCode = requestCode;
+        this.mPriority = priority;
         if(id == null){
             this.id = new HashCodeGenerator().generateID();
         }else{
@@ -54,6 +58,13 @@ public class Todo {
         return requestCode;
     }
 
+    public int getPriority() {
+        return mPriority;
+    }
+
+    public void setPriority(int mPriority) {
+        this.mPriority = mPriority;
+    }
 
     @NonNull
     @Override

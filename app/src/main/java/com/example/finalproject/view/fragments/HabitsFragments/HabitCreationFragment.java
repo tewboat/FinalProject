@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -89,6 +90,11 @@ public class HabitCreationFragment extends Fragment implements TimePickerDialog.
                             colorID, pickedTime.getText().toString(), requestCode);
                     startAlarm(calendar, habitName.getText().toString());
                     interactor.insertHabitIntoDb(habit);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    if(imm != null) {
+                        imm.hideSoftInputFromWindow(enter.getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                     Navigation.findNavController(getView()).popBackStack();
                 }
             }

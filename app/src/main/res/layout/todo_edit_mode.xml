@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +17,10 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/todo_edit_fragment_cancel_button"
+                android:id="@+id/todo_info_fragment_delete_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_arrow_back"/>
+                android:background="@drawable/delete_button_selector" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -27,10 +28,10 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/todo_info_fragment_delete_button"
+                android:id="@+id/todo_edit_fragment_save_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@drawable/ic_delete_black_24dp" />
+                android:background="@drawable/save_button_selector"/>
 
         </LinearLayout>
 
@@ -41,7 +42,7 @@
             android:ems="10"
             android:inputType="text"
             android:hint="@string/title"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:background="@android:color/transparent"/>
     </LinearLayout>
 
@@ -66,12 +67,25 @@
                 android:inputType="text"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/todo_complete_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/ic_check_box_outline" />
+            <CheckBox
+                android:id="@+id/todo_info_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/todo_complete_button"-->
+<!--                android:layout_width="24dp"-->
+<!--                android:layout_height="24dp"-->
+<!--                android:background="@drawable/ic_check_box_outline" />-->
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/todo_info_high_priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/high_priority"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,6 +111,8 @@
             android:text="@string/cancel_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+
 
     </LinearLayout>
 </LinearLayout>

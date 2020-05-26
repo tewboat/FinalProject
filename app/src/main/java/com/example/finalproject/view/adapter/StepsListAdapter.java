@@ -71,7 +71,7 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
         void bind(Step step){
             stepText.setText(step.getText());
             if(step.getIsDone() == 1){
-                color.setBackgroundResource(R.drawable.step_indicator_true);
+                color.setBackgroundResource(R.color.colorMaterialGreen);
             }
         }
 

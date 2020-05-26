@@ -48,7 +48,7 @@ public class GoalsListAdapter extends RecyclerView.Adapter<GoalsListAdapter.Goal
     class GoalsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView goalText;
-        TextView goalProgress;
+        //TextView goalProgress;
         OnGoalClick onGoalClick;
         View color;
 
@@ -56,7 +56,7 @@ public class GoalsListAdapter extends RecyclerView.Adapter<GoalsListAdapter.Goal
             super(itemView);
             this.goalText = itemView.findViewById(R.id.goal_text);
             this.color = itemView.findViewById(R.id.goal_color_flag);
-            this.goalProgress = itemView.findViewById(R.id.goal_progress);
+            //this.goalProgress = itemView.findViewById(R.id.goal_progress);
             this.onGoalClick = onGoalClickListener;
 
             itemView.setOnClickListener(this);
@@ -66,7 +66,7 @@ public class GoalsListAdapter extends RecyclerView.Adapter<GoalsListAdapter.Goal
         void bind(Goal goal) {
             goalText.setText(goal.getText());
             color.setBackgroundResource(goal.getColorID());
-            goalProgress.setText(goal.getProgress() + "%");
+            //goalProgress.setText(goal.getProgress() + "%");
         }
 
         @Override

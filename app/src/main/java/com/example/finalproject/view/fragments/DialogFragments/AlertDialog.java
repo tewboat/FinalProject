@@ -21,11 +21,26 @@ import com.example.finalproject.repository.notification.NotificationReceiver;
 public class AlertDialog extends DialogFragment {
 
     private Object object;
+    private Goal goal;
+    private Step step;
     private int fragmentID;
     private View view;
 
+    public static final int TODO_FRAGMENT_ID = 0;
+    public static final int HABIT_FRAGMENT_ID = 1;
+    public static final int GOAL_FRAGMENT_ID = 2;
+    public static final int STEP_FRAGMENT_ID = 3;
+
+
     public AlertDialog(Object object, int fragmentID, View view){
         this.object = object;
+        this.fragmentID = fragmentID;
+        this.view = view;
+    }
+
+    public AlertDialog(Step step, Goal goal,  int fragmentID, View view){
+        this.goal = goal;
+        this.step = step;
         this.fragmentID = fragmentID;
         this.view = view;
     }
@@ -69,7 +84,9 @@ public class AlertDialog extends DialogFragment {
                                 Navigation.findNavController(view).popBackStack();
                                 break;
                             case 3:
-                                interactor.removeStepFromDb((Step)object);
+                                goal.updateStepsDone(-1);
+                                interactor.updateGoalDb(goal);
+                                interactor.removeStepFromDb(step);
                                 Navigation.findNavController(view).popBackStack();
                                 break;
                         }

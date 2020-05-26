@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -43,6 +45,7 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
     private TextView pickedTime, timePicker;
     private boolean timePicked = false;
     private Calendar calendar;
+    private Switch mPriority;
     private int requestCode =  new Random().nextInt();
 
     @Nullable
@@ -55,6 +58,7 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
         todoName = view.findViewById(R.id.todo_creation_fragment_todo_name_edit_text);
         pickedTime = view.findViewById(R.id.todo_creation_picked_time);
         timePicker = view.findViewById(R.id.todo_creation_time_picker);
+        mPriority = view.findViewById(R.id.todo_creation_high_priority);
         return view;
     }
 
@@ -76,10 +80,15 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
             @Override
             public void onClick(View v) {
                 if (todoName.getText() != null && !todoName.getText().toString().equals("")) {
-                    Todo todo = new Todo(null, todoName.getText().toString(), 0, pickedTime.getText().toString(), requestCode);
+                    Todo todo = new Todo(null, todoName.getText().toString(), 0, pickedTime.getText().toString(), requestCode, mPriority.isChecked() ? 1 : 0);
                     interactor.insertTodoIntoDb(todo);
                     if (timePicked) {
                         startAlarm(calendar, todoName.getText().toString());
+                    }
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    if(imm != null) {
+                        imm.hideSoftInputFromWindow(create.getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
                     }
                     Navigation.findNavController(getView()).popBackStack();
                 }
