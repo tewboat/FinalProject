@@ -1,7 +1,8 @@
 package com.example.finalproject.view.adapter;
 
 import android.content.Context;
-        import android.util.Log;
+import android.graphics.Paint;
+import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -17,21 +18,12 @@ import android.content.Context;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoListViewHolder> {
 
-    String TAG = "ToDoListAdapter";
-    Context context;
-    ArrayList<Todo> todoArrayList;
-    OnTodoClick onTodoClick;
+    private ArrayList<Todo> todoArrayList;
+    private OnTodoClick onTodoClick;
 
-    public ToDoListAdapter(Context context, ArrayList<Todo> todoArrayList, OnTodoClick onTodoClick) {
-        this.context = context;
+    public ToDoListAdapter(ArrayList<Todo> todoArrayList, OnTodoClick onTodoClick) {
         this.todoArrayList = todoArrayList;
         this.onTodoClick = onTodoClick;
-    }
-
-    public void addObjToArray(Todo todo) {
-        Log.d(TAG, "addObjToArray: object added");
-        todoArrayList.add(todo);
-        notifyDataSetChanged();
     }
 
     public Todo getTodo(int position){
@@ -73,12 +65,9 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoLi
 
         void bind(final Todo todo) {
             todoText.setText(todo.getText());
-                switch (todo.getIsComplete()){
-                case 0:
-                    color.setBackgroundResource(R.color.colorMaterialRed);
-                    break;
-                case 1:
-                    color.setBackgroundResource(R.color.colorMaterialGreen);
+            color.setBackgroundResource(todo.getColor());
+            if (todo.getIsComplete() == 1) {
+                todoText.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             }
         }
 

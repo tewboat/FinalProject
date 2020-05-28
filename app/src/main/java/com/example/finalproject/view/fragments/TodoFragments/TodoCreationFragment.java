@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -28,37 +29,36 @@ import androidx.navigation.Navigation;
 import com.example.finalproject.R;
 import com.example.finalproject.domain.Todo;
 import com.example.finalproject.interactor.Interactor;
+import com.example.finalproject.interfaces.OnSetColor;
 import com.example.finalproject.repository.notification.NotificationHelper;
 import com.example.finalproject.repository.notification.NotificationReceiver;
+import com.example.finalproject.view.fragments.DialogFragments.ColorPickerFragment;
 import com.example.finalproject.view.fragments.DialogFragments.TimePickerFragment;
 
 import java.util.Calendar;
 import java.util.Random;
 
 
-public class TodoCreationFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class TodoCreationFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, OnSetColor {
 
     private Button cancelAlarm;
     private ImageButton create, cancel;
     private EditText todoName;
     private Interactor interactor;
-    private TextView pickedTime, timePicker;
+    private TextView pickedTime, timePicker, mColorPicker;
     private boolean timePicked = false;
     private Calendar calendar;
     private Switch mPriority;
-    private int requestCode =  new Random().nextInt();
+    private int requestCode = new Random().nextInt();
+    private int mColorId = R.color.colorMaterialGreen;
+    private LinearLayout mHeaderLayout, mColorPickerLayout;
+    private View mColorPicked;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.todo_creation_fragment, container, false);
-        cancelAlarm = view.findViewById(R.id.todo_creation_fragment_cancel_alarm);
-        cancel = view.findViewById(R.id.todo_creation_fragment_cancel_button);
-        create = view.findViewById(R.id.todo_creation_fragment_enter_button);
-        todoName = view.findViewById(R.id.todo_creation_fragment_todo_name_edit_text);
-        pickedTime = view.findViewById(R.id.todo_creation_picked_time);
-        timePicker = view.findViewById(R.id.todo_creation_time_picker);
-        mPriority = view.findViewById(R.id.todo_creation_high_priority);
+        initView(view);
         return view;
     }
 
@@ -69,24 +69,39 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
         setOnClickListeners();
     }
 
-    public void setOnClickListeners() {
+    private void initView(View view){
+        cancelAlarm = view.findViewById(R.id.todo_creation_fragment_cancel_alarm);
+        cancel = view.findViewById(R.id.todo_creation_fragment_cancel_button);
+        create = view.findViewById(R.id.todo_creation_fragment_enter_button);
+        todoName = view.findViewById(R.id.todo_creation_fragment_todo_name_edit_text);
+        pickedTime = view.findViewById(R.id.todo_creation_picked_time);
+        timePicker = view.findViewById(R.id.todo_creation_time_picker);
+        mPriority = view.findViewById(R.id.todo_creation_high_priority);
+        mHeaderLayout = view.findViewById(R.id.todo_creation_fragment_header_layout);
+        mColorPicker = view.findViewById(R.id.todo_creation_color_picker);
+        mColorPicked = view.findViewById(R.id.todo_creation_chosen_color);
+        mColorPickerLayout = view.findViewById(R.id.todo_creation_color_picker_layout);
+    }
+
+    private void setOnClickListeners() {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(getView()).popBackStack();
             }
         });
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (todoName.getText() != null && !todoName.getText().toString().equals("")) {
-                    Todo todo = new Todo(null, todoName.getText().toString(), 0, pickedTime.getText().toString(), requestCode, mPriority.isChecked() ? 1 : 0);
+                    Todo todo = new Todo(null, todoName.getText().toString(), 0, pickedTime.getText().toString(), requestCode, mPriority.isChecked() ? 1 : 0, mColorId);
                     interactor.insertTodoIntoDb(todo);
                     if (timePicked) {
                         startAlarm(calendar, todoName.getText().toString());
                     }
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-                    if(imm != null) {
+                    if (imm != null) {
                         imm.hideSoftInputFromWindow(create.getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
@@ -112,6 +127,20 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
                 }
             }
         });
+
+        mColorPickerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ColorPickerFragment(TodoCreationFragment.this).show(getChildFragmentManager(), "COLOR_PICKER_FRAGMENT");
+            }
+        });
+
+        mColorPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ColorPickerFragment(TodoCreationFragment.this).show(getChildFragmentManager(), "COLOR_PICKER_FRAGMENT");
+            }
+        });
     }
 
     @Override
@@ -133,7 +162,8 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
         } else {
             mMinute = "0" + minute;
         }
-        pickedTime.setText(mHour + ":" + mMinute);
+        String time = mHour + ":" + mMinute;
+        pickedTime.setText(time);
         timePicked = true;
     }
 
@@ -150,4 +180,10 @@ public class TodoCreationFragment extends Fragment implements TimePickerDialog.O
         }
     }
 
+    @Override
+    public void onSetColor(int colorID) {
+        mColorId = colorID;
+        mColorPicked.setBackgroundColor(getResources().getColor(colorID));
+        mHeaderLayout.setBackgroundColor(getResources().getColor(colorID));
+    }
 }

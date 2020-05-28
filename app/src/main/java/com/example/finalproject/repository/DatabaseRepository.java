@@ -3,7 +3,6 @@ package com.example.finalproject.repository;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.finalproject.domain.Goal;
 import com.example.finalproject.domain.Habit;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 
 public class DatabaseRepository {
     private DatabaseHelper databaseHelper;
-    private final String TAG = "DatabaseHelper";
 
     public DatabaseRepository(Context context) {
         initDb(context);
@@ -25,12 +23,8 @@ public class DatabaseRepository {
     }
 
     public void insertTodo(Todo todo) {
-        Log.d(TAG, "insertTodo: getting WritableDatabase");
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        Log.d(TAG, "insertTodo: WritableDatabase got");
-        Log.d(TAG, "insertTodo: starting inserting script");
         db.execSQL(SQLScripts.insertObjIntoTodoDatabaseScript(todo));
-        Log.d(TAG, "insertTodo: inserting script done");
         db.close();
     }
 
@@ -44,6 +38,7 @@ public class DatabaseRepository {
             int isDoneColIndex = cursor.getColumnIndex("isComplete");
             int requestCodeIndex = cursor.getColumnIndex("requestCode");
             int priorityColIndex = cursor.getColumnIndex("priority");
+            int colorColIndex = cursor.getColumnIndex("color");
             ArrayList<Todo> todoArrayList = new ArrayList<>();
             do {
                 Todo todo = new Todo(cursor.getString(idColIndex),
@@ -51,7 +46,8 @@ public class DatabaseRepository {
                         cursor.getInt(isDoneColIndex),
                         cursor.getString(reminderTomeColIndex),
                         cursor.getInt(requestCodeIndex),
-                        cursor.getInt(priorityColIndex));
+                        cursor.getInt(priorityColIndex),
+                        cursor.getInt(colorColIndex));
                 todoArrayList.add(todo);
             } while (cursor.moveToNext());
             cursor.close();
@@ -196,13 +192,15 @@ public class DatabaseRepository {
             int idColIndex = cursor.getColumnIndex("id");
             int desColIndex = cursor.getColumnIndex("description");
             int isDoneColIndex = cursor.getColumnIndex("isDone");
+            int colorColIndex = cursor.getColumnIndex("color");
 
             ArrayList<Step> stepsArrayList = new ArrayList<>();
             do {
                 Step step = new Step(cursor.getString(idColIndex),
                         cursor.getString(textColIndex),
                         cursor.getString(desColIndex),
-                        cursor.getInt(isDoneColIndex));
+                        cursor.getInt(isDoneColIndex),
+                        cursor.getInt(colorColIndex));
                 stepsArrayList.add(step);
             } while (cursor.moveToNext());
             cursor.close();
@@ -225,12 +223,14 @@ public class DatabaseRepository {
         int isDoneColIndex = cursor.getColumnIndex("isComplete");
         int requestCodeIndex = cursor.getColumnIndex("requestCode");
         int priorityColIndex = cursor.getColumnIndex("priority");
+        int colorColIndex = cursor.getColumnIndex("color");
         Todo todo = new Todo(cursor.getString(idColIndex),
                 cursor.getString(textColIndex),
                 cursor.getInt(isDoneColIndex),
                 cursor.getString(reminderTomeColIndex),
                 cursor.getInt(requestCodeIndex),
-                cursor.getInt(priorityColIndex));
+                cursor.getInt(priorityColIndex),
+                cursor.getInt(colorColIndex));
         cursor.close();
         db.close();
         return todo;
@@ -282,7 +282,12 @@ public class DatabaseRepository {
         int idColIndex = cursor.getColumnIndex("id");
         int desColIndex = cursor.getColumnIndex("description");
         int isDoneColIndex = cursor.getColumnIndex("isDone");
-        Step step = new Step(cursor.getString(idColIndex), cursor.getString(textColIndex), cursor.getString(desColIndex), cursor.getInt(isDoneColIndex));
+        int colorColIndex = cursor.getColumnIndex("color");
+        Step step = new Step(cursor.getString(idColIndex),
+                cursor.getString(textColIndex),
+                cursor.getString(desColIndex),
+                cursor.getInt(isDoneColIndex),
+                cursor.getInt(colorColIndex));
         cursor.close();
         db.close();
         return step;

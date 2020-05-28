@@ -1,6 +1,7 @@
 package com.example.finalproject.view.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +71,9 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
 
         void bind(Step step){
             stepText.setText(step.getText());
+            color.setBackgroundResource(step.getColorId());
             if(step.getIsDone() == 1){
-                color.setBackgroundResource(R.color.colorMaterialGreen);
+                stepText.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             }
         }
 

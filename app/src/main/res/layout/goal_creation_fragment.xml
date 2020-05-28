@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="@string/title"
+            android:hint="@string/goal_title"
             android:background="@android:color/transparent"
             android:layout_marginTop="16dp"/>
     </LinearLayout>

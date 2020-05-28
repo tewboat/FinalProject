@@ -79,7 +79,7 @@ public class TodoFragment extends Fragment implements ToDoListAdapter.OnTodoClic
         }
         Log.d(TAG, "init: todoArrayList successfully got");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        toDoListAdapter = new ToDoListAdapter(getContext(), todoArrayList, (ToDoListAdapter.OnTodoClick) this);
+        toDoListAdapter = new ToDoListAdapter(todoArrayList, (ToDoListAdapter.OnTodoClick) this);
         recyclerView.setAdapter(toDoListAdapter);
     }
 

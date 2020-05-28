@@ -44,7 +44,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:textSize="16sp"
-            android:hint="@string/title"
+            android:hint="@string/habit_title"
             android:inputType="text"
             android:background="@android:color/transparent"/>
     </LinearLayout>

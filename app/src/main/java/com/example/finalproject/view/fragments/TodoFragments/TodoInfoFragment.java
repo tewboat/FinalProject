@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -26,22 +28,26 @@ import androidx.navigation.Navigation;
 import com.example.finalproject.R;
 import com.example.finalproject.domain.Todo;
 import com.example.finalproject.interactor.Interactor;
+import com.example.finalproject.interfaces.OnSetColor;
 import com.example.finalproject.repository.notification.NotificationReceiver;
 import com.example.finalproject.view.fragments.DialogFragments.AlertDialog;
+import com.example.finalproject.view.fragments.DialogFragments.ColorPickerFragment;
 import com.example.finalproject.view.fragments.DialogFragments.TimePickerFragment;
 
 import java.util.Calendar;
 
-public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, OnSetColor {
     private Todo todo;
     private ImageButton mSaveButton, deleteTask;
     private EditText todoEditText;
     private Interactor interactor;
     private CheckBox isComplete;
-    private TextView pickedTime, timePicker;
+    private TextView pickedTime, timePicker, mColorPicker;
     private Calendar calendar;
     private Button deleteAlarm;
     private Switch mPriority;
+    private LinearLayout mHeaderLayout, mColorPickerLayout;
+    private View mPickedColor;
 
     @Nullable
     @Override
@@ -59,6 +65,9 @@ public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTim
         interactor = new Interactor(getActivity());
         this.todo = interactor.getTodo(todoID);
         todoEditText.setText(todo.getText());
+        Log.d("COLOR_PICKED", "setValues: " + todo.getColor());
+        mHeaderLayout.setBackgroundColor(getResources().getColor(todo.getColor()));
+        mPickedColor.setBackgroundColor(getResources().getColor(todo.getColor()));
         if (todo.getIsComplete() == 1) {
             isComplete.setChecked(true);
         }
@@ -81,6 +90,10 @@ public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTim
         timePicker = view.findViewById(R.id.todo_info_time_picker);
         deleteAlarm = view.findViewById(R.id.todo_info_cancel_alarm);
         mPriority = view.findViewById(R.id.todo_info_high_priority);
+        mHeaderLayout = view.findViewById(R.id.todo_info_header_layout);
+        mPickedColor = view.findViewById(R.id.todo_info_chosen_color);
+        mColorPicker = view.findViewById(R.id.todo_info_color_picker);
+        mColorPickerLayout = view.findViewById(R.id.todo_info_color_picker_layout);
     }
 
     private void setOnClickListeners() {
@@ -148,6 +161,20 @@ public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTim
             }
         });
 
+        mColorPickerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ColorPickerFragment(TodoInfoFragment.this).show(getChildFragmentManager(), "COLOR_PICKER_FRAGMENT");
+            }
+        });
+
+        mColorPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ColorPickerFragment(TodoInfoFragment.this).show(getChildFragmentManager(), "COLOR_PICKER_FRAGMENT");
+            }
+        });
+
     }
 
     @Override
@@ -196,5 +223,12 @@ public class TodoInfoFragment extends Fragment implements TimePickerDialog.OnTim
         if (alarmManager != null) {
             alarmManager.cancel(pendingIntent);
         }
+    }
+
+    @Override
+    public void onSetColor(int colorID) {
+        todo.setColor(colorID);
+        mHeaderLayout.setBackgroundColor(getResources().getColor(colorID));
+        mPickedColor.setBackgroundColor(getResources().getColor(colorID));
     }
 }

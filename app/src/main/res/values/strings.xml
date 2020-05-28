@@ -14,7 +14,10 @@
     <string name="delete_goal">Delete goal</string>
     <string name="delete_step">Delete step</string>
     <string name="color_choice">Choose a color</string>
-    <string name="title">Title</string>
+    <string name="habit_title">Habit title</string>
+    <string name="task_title">Task title</string>
+    <string name="goal_title">Goal title</string>
+    <string name="step_title">Step title</string>
     <string name="remind">Remind at</string>
     <string name="description">Description</string>
     <string name="completed">Completed</string>

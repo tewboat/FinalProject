@@ -16,13 +16,11 @@ import java.util.ArrayList;
 
 public class HabitsListAdapter extends RecyclerView.Adapter<HabitsListAdapter.HabitsListViewHolder> {
 
-    ArrayList<Habit> habitArrayList;
-    Context context;
-    OnHabitClick onHabitClick;
+    private ArrayList<Habit> habitArrayList;
+    private OnHabitClick onHabitClick;
 
-    public HabitsListAdapter(ArrayList<Habit> habitsArrayList, Context context, OnHabitClick onHabitClick){
+    public HabitsListAdapter(ArrayList<Habit> habitsArrayList, OnHabitClick onHabitClick){
         this.habitArrayList = habitsArrayList;
-        this.context = context;
         this.onHabitClick = onHabitClick;
     }
 

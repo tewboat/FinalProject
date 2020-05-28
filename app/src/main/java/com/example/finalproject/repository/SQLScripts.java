@@ -14,7 +14,8 @@ public class SQLScripts {
                 "reminderTime text null, " +
                 "isComplete integer not null, " +
                 "requestCode integer not null, " +
-                "priority integer not null);";
+                "priority integer not null, " +
+                "color integer not null);";
     }
 
     public static String initHabitsDatabaseScript() {
@@ -41,7 +42,8 @@ public class SQLScripts {
                 "parentID text not null, " +
                 "text text not null, " +
                 "description text, " +
-                "isDone integer not null);";
+                "isDone integer not null, " +
+                "color integer not null);";
     }
 
     public static String removeObjectFromTodoDatabaseScript(Todo todo) {
@@ -97,13 +99,14 @@ public class SQLScripts {
         if (todo.getReminderTime() != null) {
             reminderTime = "\"" + todo.getReminderTime() + "\"";
         }
-        return "INSERT INTO todoDatabase(id, todoText, reminderTime, isComplete, requestCode, priority)" +
+        return "INSERT INTO todoDatabase(id, todoText, reminderTime, isComplete, requestCode, priority, color)" +
                 "values(" + id + ", " +
                 text + ", " +
                 reminderTime + ", " +
                 todo.getIsComplete() + ", " +
                 todo.getRequestCode() + ", " +
-                todo.getPriority() + ");";
+                todo.getPriority() + ", " +
+                todo.getColor() + ");";
     }
 
     public static String insertObjIntoGoalsDatabaseScript(Goal goal) {
@@ -122,12 +125,13 @@ public class SQLScripts {
         String parentId = "\"" + goal.getID() + "\"";
         String text = "\"" + step.getText() + "\"";
         String description = "\"" + step.getDescription() + "\"";
-        return "INSERT INTO stepsDatabase(id, parentID, text, description, isDone)" +
+        return "INSERT INTO stepsDatabase(id, parentID, text, description, isDone, color)" +
                 "VALUES(" + id + ", " +
                 parentId + ", " +
                 text + ", " +
                 description + ", " +
-                step.getIsDone() + ");";
+                step.getIsDone() + ", " +
+                step.getColorId() + ");";
     }
 
     public static String updateHabitsListScript(Habit habit) {
@@ -152,7 +156,8 @@ public class SQLScripts {
                 "reminderTime = " + reminderTime + ", " +
                 "isComplete = " + isComplete + ", " +
                 "requestCode = " + todo.getRequestCode() + ", " +
-                "priority = " + todo.getPriority() + " " +
+                "priority = " + todo.getPriority() + ", " +
+                "color = " + todo.getColor() + " " +
                 "WHERE id = " + id + ";";
     }
 
@@ -174,7 +179,8 @@ public class SQLScripts {
         return "UPDATE stepsDatabase " +
                 "SET text = " + text + ", " +
                 "description = " + description + ", " +
-                "isDone = " + step.getIsDone() + " " +
+                "isDone = " + step.getIsDone() + ", " +
+                "color = " + step.getColorId() + " " +
                 "WHERE id = " + id + ";";
     }
 

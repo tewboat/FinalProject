@@ -71,7 +71,7 @@ public class HabitsFragment extends Fragment implements HabitsListAdapter.OnHabi
                     break;
             }
         }
-        habitsListAdapter = new HabitsListAdapter(habitArrayList, getActivity().getApplicationContext(), this);
+        habitsListAdapter = new HabitsListAdapter(habitArrayList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setAdapter(habitsListAdapter);
     }

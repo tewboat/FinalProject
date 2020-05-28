@@ -1,7 +1,6 @@
 package com.example.finalproject.domain;
 
 import androidx.annotation.NonNull;
-
 import com.example.finalproject.repository.HashCodeGenerator;
 
 public class Todo {
@@ -11,16 +10,18 @@ public class Todo {
     private String reminderTime;
     private String id;
     private int mPriority;
+    private int mColor;
 
 
 
 
-    public Todo(String id, String text, int isComplete, String reminderTime, int requestCode, int priority){
+    public Todo(String id, String text, int isComplete, String reminderTime, int requestCode, int priority, int color){
         this.text = text;
         this.isComplete = isComplete;
         this.reminderTime = reminderTime;
         this.requestCode = requestCode;
         this.mPriority = priority;
+        this.mColor = color;
         if(id == null){
             this.id = new HashCodeGenerator().generateID();
         }else{
@@ -64,6 +65,14 @@ public class Todo {
 
     public void setPriority(int mPriority) {
         this.mPriority = mPriority;
+    }
+
+    public int getColor() {
+        return mColor;
+    }
+
+    public void setColor(int mColor) {
+        this.mColor = mColor;
     }
 
     @NonNull
